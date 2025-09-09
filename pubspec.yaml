@@ -1,0 +1,37 @@
+name: movie_tracker
+publish_to: 'none'
+description: A cross‑platform movie tracker (Linux first)
+version: 0.0.1+1
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  go_router: ^14.2.0
+  flutter_riverpod: ^2.5.1
+  riverpod: ^2.5.1
+  dio: ^5.7.0
+  flutter_dotenv: ^5.1.0
+  # Пока без БД, добавим drift позже
+
+  # Для UI
+  collection: ^1.18.0
+
+  drift: ^2.20.2
+  sqlite3_flutter_libs: ^0.5.24
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  drift_dev: ^2.20.2
+  build_runner: ^2.4.12
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/.env
