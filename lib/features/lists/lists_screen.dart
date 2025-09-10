@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:drift/drift.dart' show Value;
 import '../../core/db_providers.dart';
 import '../../db/app_db.dart';
+import '../../core/nav.dart';
 
 final listsProvider = FutureProvider<List<MovieList>>((ref) async {
   final dao = ref.watch(listsDaoProvider);
@@ -41,7 +42,7 @@ class ListsScreen extends ConsumerWidget {
                   leading: Icon(icon),
                   title: Text(l.name),
                   subtitle: Text('$count фильмов'),
-                  onTap: () => context.go('/lists/${l.id}'),
+                  onTap: () => openList(context, l.id),
                 );
               },
             );

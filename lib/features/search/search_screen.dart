@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/providers.dart';
 import '../../services/tmdb_client.dart';
+import '../../core/nav.dart';
 
 final searchResultsProvider = FutureProvider.autoDispose
     .family<List<TmdbMovie>, String>((ref, query) async {
@@ -65,7 +65,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       : const SizedBox(width: 48),
                   title: Text(m.title),
                   subtitle: Text(m.year != null ? m.year.toString() : '—'),
-                  onTap: () => context.go('/movie/${m.tmdbId}'),
+                  onTap: () => openMovie(context, m.tmdbId),
                 );
               },
             ),

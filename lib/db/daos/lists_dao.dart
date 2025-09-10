@@ -6,7 +6,7 @@ part 'lists_dao.g.dart';
 
 @DriftAccessor(tables: [MovieLists, MovieListItems, Movies])
 class ListsDao extends DatabaseAccessor<AppDb> with _$ListsDaoMixin {
-  ListsDao(AppDb db) : super(db);
+  ListsDao(super.db);
 
   Future<int> createList(MovieListsCompanion list) =>
       into(movieLists).insert(list);
@@ -45,5 +45,12 @@ class ListsDao extends DatabaseAccessor<AppDb> with _$ListsDaoMixin {
       ..where((tbl) => tbl.listId.equals(listId));
     final rows = await q.get();
     return rows.length;
+  }
+
+  Future<bool> isMovieInList(int listId, int movieId) async {
+    final row = await (select(movieListItems)
+          ..where((t) => t.listId.equals(listId) & t.movieId.equals(movieId)))
+        .getSingleOrNull();
+    return row != null;
   }
 }

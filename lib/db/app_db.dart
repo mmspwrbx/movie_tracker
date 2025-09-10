@@ -31,17 +31,17 @@ class AppDb extends _$AppDb {
         beforeOpen: (details) async {
           // системные списки
           await into(movieLists).insertOnConflictUpdate(
-            MovieListsCompanion(
-              id: const Value(1),
-              name: const Value('Просмотрено'),
-              type: const Value('watched'),
+            const MovieListsCompanion(
+              id: Value(1),
+              name: Value('Просмотрено'),
+              type: Value('watched'),
             ),
           );
           await into(movieLists).insertOnConflictUpdate(
-            MovieListsCompanion(
-              id: const Value(2),
-              name: const Value('Хочу посмотреть'),
-              type: const Value('planned'),
+            const MovieListsCompanion(
+              id: Value(2),
+              name: Value('Хочу посмотреть'),
+              type: Value('planned'),
             ),
           );
         },

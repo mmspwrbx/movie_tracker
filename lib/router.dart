@@ -1,14 +1,14 @@
 // lib/router.dart
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'features/home/home_screen.dart';
 import 'features/search/search_screen.dart';
 import 'features/lists/lists_screen.dart';
-import 'features/lists/list_details_screen.dart'; // ← важный импорт
+import 'features/lists/list_details_screen.dart';
 import 'features/profile/profile_screen.dart';
 import 'features/movie/movie_details_screen.dart';
+import 'features/recs/recommendations_screen.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -39,6 +39,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 },
               ),
             ],
+          ),
+          GoRoute(
+            path: 'recommendations', // ← добавлено
+            name: 'recommendations',
+            builder: (context, state) => const RecommendationsScreen(),
           ),
           GoRoute(
             path: 'profile',
