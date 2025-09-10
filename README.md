@@ -1,4 +1,4 @@
-# movie_tracker
+# Movie Tracker
 <<<<<<< HEAD
 tracker for watched movie
 =======
