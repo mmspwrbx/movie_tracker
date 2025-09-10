@@ -1,6 +1,5 @@
 # Movie Tracker
-<<<<<<< HEAD
-tracker for watched movie
+Tracker App for watched movies and serials
 =======
 
 A new Flutter project.
