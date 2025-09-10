@@ -1,5 +1,4 @@
-# Movie Tracker
-Tracker App for watched movies and serials
+# Movie Tracker - Tracker App for watched movies and serials
 =======
 
 A new Flutter project.
