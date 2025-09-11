@@ -1,6 +1,6 @@
 # 🎬 Movie Tracker
 
-English • [Русский](#-movie-tracker-русский)
+[English](README.md) • [Русский](README.RU.md)
 
 A lightweight Flutter app to track movies you watch and plan to watch.  
 It pulls data from **TMDb** (with optional **OMDb** ratings), stores your library locally via **Drift** (SQLite), and offers recommendations based on your history.
