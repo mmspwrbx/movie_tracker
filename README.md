@@ -1,17 +1,41 @@
-# Movie Tracker - Tracker App for watched movies and serials
+# 🎬 Movie Tracker
 
-A new Flutter project.
+English • [Русский](#-movie-tracker-русский)
 
-## Getting Started
+A lightweight Flutter app to track movies you watch and plan to watch.  
+It pulls data from **TMDb** (with optional **OMDb** ratings), stores your library locally via **Drift** (SQLite), and offers recommendations based on your history.
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔎 **Search** movies (TMDb)
+- 🧠 **Recommendations** based on your recently watched
+- 🗂️ **Lists**: *Watched* and *Watch later* (+ quick toggle on cards)
+- 🎥 **Movie details**: synopsis, genres, runtime, backdrops
+- ⭐ **Ratings badges**: TMDb always; IMDb & Rotten Tomatoes when OMDb key is provided
+- 📝 **Reviews**: personal 10-point rating (with halves) + text notes
+- 🧹 **List cleanup**: swipe to remove in list details
+- 🧰 **Filters** in recommendations: genres, year range, min TMDb score
+- 👤 **Profile**: name, email, avatar; local onboarding if profile not created
+- 💾 **Local DB**: Drift/SQLite (works offline)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🧱 Tech Stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> cec6bd3 (feat: initial Flutter movie tracker (Linux) + TMDb/OMDb, Drift DB)
+- Flutter + Material 3
+- State: **Riverpod**
+- Navigation: **go_router**
+- HTTP: **Dio**
+- DB: **Drift** (SQLite)
+- Config: **flutter_dotenv**
+- APIs: **TMDb** (+ optional **OMDb**)
+
+## 🔧 Setup
+
+1. **Flutter**: install a recent stable SDK.
+2. **API keys**:
+   - Get a TMDb API key.
+   - (Optional) Get an OMDb key for IMDb/RT badges.
+3. Create `assets/.env`:
+   ```env
+   TMDB_API_KEY=your_tmdb_key_here
+   OMDB_API_KEY=your_omdb_key_here
+   TMDB_IMAGE_BASE=https://image.tmdb.org/t/p/
