@@ -56,4 +56,13 @@ class ReviewsDao extends DatabaseAccessor<AppDb> with _$ReviewsDaoMixin {
     if (avg == null) return null;
     return avg.round();
   }
+
+  // Средняя личная оценка (в десятках: 65 => 6.5/10). null — если оценок нет
+  Future<double?> averageRatingX10() async {
+    final rows =
+        await (select(reviews)..where((r) => r.rating.isNotNull())).get();
+    if (rows.isEmpty) return null;
+    final total = rows.fold<int>(0, (acc, r) => acc + (r.rating ?? 0));
+    return total / rows.length; // x10
+  }
 }

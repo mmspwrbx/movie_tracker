@@ -53,4 +53,45 @@ class ListsDao extends DatabaseAccessor<AppDb> with _$ListsDaoMixin {
         .getSingleOrNull();
     return row != null;
   }
+
+  // Топ жанров в конкретном списке (по умолчанию "просмотрено" = listId: 1)
+  Future<List<MapEntry<String, int>>> topGenresInList(int listId,
+      {int limit = 3}) async {
+    final query = select(movies).join([
+      innerJoin(movieListItems, movieListItems.movieId.equalsExp(movies.id)),
+    ])
+      ..where(movieListItems.listId.equals(listId));
+
+    final rows = await query.get();
+    final counter = <String, int>{};
+
+    for (final r in rows) {
+      final m = r.readTable(movies);
+      final genres = m.genres ?? const <String>[];
+      for (final g in genres) {
+        if (g.trim().isEmpty) continue;
+        counter[g] = (counter[g] ?? 0) + 1;
+      }
+    }
+
+    final list = counter.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value)); // по убыванию
+    return list.take(limit).toList();
+  }
+
+// Суммарная длительность фильмов (в минутах) в списке
+  Future<int> totalRuntimeInList(int listId) async {
+    final query = select(movies).join([
+      innerJoin(movieListItems, movieListItems.movieId.equalsExp(movies.id)),
+    ])
+      ..where(movieListItems.listId.equals(listId));
+
+    final rows = await query.get();
+    var sum = 0;
+    for (final r in rows) {
+      final m = r.readTable(movies);
+      sum += (m.runtime ?? 0);
+    }
+    return sum;
+  }
 }

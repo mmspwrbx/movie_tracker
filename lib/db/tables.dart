@@ -50,3 +50,15 @@ class StringListConverter extends TypeConverter<List<String>, String> {
   @override
   String toSql(List<String> value) => value.join(',');
 }
+
+// ---------------------- USER PROFILE ----------------------
+class UserProfiles extends Table {
+  IntColumn get id => integer().autoIncrement()();
+
+  TextColumn get displayName => text().nullable()();
+  TextColumn get email => text().nullable()();
+  TextColumn get avatarPath => text().nullable()();
+
+  DateTimeColumn get createdAt =>
+      dateTime().withDefault(currentDateAndTime)(); // Когда создан
+}

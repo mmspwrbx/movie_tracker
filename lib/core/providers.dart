@@ -15,7 +15,6 @@ final movieDetailsProvider =
 
   final base = await tmdb.details(movieId);
 
-  // Если TMDb вернул imdbId и OMDb-ключ настроен — подтянем рейтинги
   if (base.imdbId != null && omdb.isConfigured) {
     try {
       final r = await omdb.ratings(imdbId: base.imdbId!);
@@ -23,10 +22,7 @@ final movieDetailsProvider =
         imdbRating: r['imdb'],
         rottenTomatoes: r['rt'],
       );
-    } catch (_) {
-      // Если OMDb недоступен — просто вернём базовые данные
-    }
+    } catch (_) {}
   }
-
   return base;
 });
